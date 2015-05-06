@@ -33,11 +33,11 @@ resource "google_compute_address" "default" {
 
 resource "google_compute_instance" "minecraft" {
     name = "minecraft-instance"
-    machine_type = "n1-standard-1"
+    machine_type = "${var.machine_type}"
     zone = "${lookup(var.zones, var.region)}"
 
     disk {
-        image = "coreos-stable-633-1-0-v20150414"
+        image = "${var.disk_image}"
     }
 
     network_interface {
@@ -48,4 +48,8 @@ resource "google_compute_instance" "minecraft" {
     }
 
     address = "${google_compute_address.default.name}"
+
+    metadata {
+    	sshKeys = "${file(var.ssh_path)}"
+    }
 }
