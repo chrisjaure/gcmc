@@ -31,7 +31,7 @@ resource "google_compute_address" "default" {
     name = "minecraft-address"
 }
 
-resource "google_compute_instance" "minecraft" {
+resource "google_compute_instance" "default" {
     name = "minecraft-instance"
     machine_type = "${var.machine_type}"
     zone = "${lookup(var.zones, var.region)}"
@@ -52,4 +52,8 @@ resource "google_compute_instance" "minecraft" {
     metadata {
     	sshKeys = "${file(var.ssh_path)}"
     }
+}
+
+output "ip" {
+    value = "${google_compute_address.default.address}"
 }
