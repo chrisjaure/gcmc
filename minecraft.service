@@ -1,0 +1,14 @@
+[Unit]
+Description=Minecraft
+After=docker.service
+
+[Service]
+Environment="DOCKER_NAME=minecraft"
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill $DOCKER_NAME
+ExecStartPre=-/usr/bin/docker rm $DOCKER_NAME
+ExecStartPre=/usr/bin/docker pull itzg/minecraft-server
+ExecStart=/usr/bin/docker run -e 'JVM_OPTS=-Xmx1408M -Xms1408M' -e EULA=TRUE -p 25565:25565 -v /home/core/minecraft:/data --name $DOCKER_NAME itzg/minecraft-server
+
+[Install]
+WantedBy=multi-user.target
