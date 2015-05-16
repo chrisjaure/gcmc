@@ -6,9 +6,10 @@
     docker_name: minecraft
     docker_image: itzg/minecraft-server
     docker_volume: /home/core/minecraft
+    minecraft_mem: "{{ ansible_memtotal_mb * 0.75 }}"
     opts:
     - EULA=TRUE
-    - JVM_OPTS=-Xmx1408M -Xms1408M
+    - JVM_OPTS=-Xmx{{ minecraft_mem }}M -Xms{{ minecraft_mem }}M
     systemd_service_path: /etc/systemd/system
   tasks:
   - name: install service
