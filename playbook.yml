@@ -1,0 +1,20 @@
+---
+- hosts: minecraft
+  gather_facts: yes
+  remote_user: core
+  sudo: yes
+  vars:
+    docker_name: minecraft
+    docker_image: itzg/minecraft-server
+    docker_volume: /home/core/minecraft
+    opts:
+    - EULA=TRUE
+    - 'JVM_OPTS=-Xmx1408M -Xms1408M'
+    systemd_service_path: /etc/systemd/system
+  tasks:
+  - name: install service
+    template: src=minecraft.service.js dest={{ systemd_service_path }}/minecraft.service
+  - name: enable service
+    command: systemctl enable {{ systemd_service_path }}/minecraft.service
+  - name: start service
+    command: systemctl start minecraft.service

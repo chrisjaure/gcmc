@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+if [[ $1 == "--list" ]]; then
+	echo "{ \"minecraft\": [\"$(terraform output ip)\"] }"
+else
+	echo "{}"
+fi

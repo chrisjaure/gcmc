@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft
+After=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill {{ docker_name }}
+ExecStartPre=-/usr/bin/docker rm {{ docker_name }}
+ExecStartPre=/usr/bin/docker pull {{ docker_image }}
+ExecStart=/usr/bin/docker run {% for opts in opts %}-e {{ opt }}{% endfor %} -p 25565:25565 -v {{ docker_volume }}:/data --name {{ docker_name }} {{ docker_image }}
+
+[Install]
+WantedBy=multi-user.target
