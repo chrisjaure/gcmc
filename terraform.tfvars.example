@@ -1,0 +1,3 @@
+account_file = "path to google cloud credentials"
+project = "google cloud project name"
+ssh_path = "path to your public key"
