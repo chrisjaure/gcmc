@@ -59,6 +59,7 @@ Edit `terraform.tfvars` to modify the following:
 - `docker_name` - Name of the docker container. Defaults to "minecraft".
 - `docker_image` - Docker image to pull. Defaults to "itzg/minecraft-server".
 - `docker_volume` - Volume on host to persist data. Defaults to "/home/core/minecraft".
+- `minecraft_data` - Path to Minecraft archive data to upload, useful for adding mods or a pregenerated world. Be sure to archive the contents of the minecraft folder and not the folder itself.
 - `minecraft_mem` - Memory to provide Minecraft jar. Defaults to 3/4 the total memory of the machine.
 - `opts` - See Docker config below.
 
