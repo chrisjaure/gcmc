@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
+HOSTS="[\"$(terraform output ip)\"]"
+VARS='{ "ansible_ssh_user": "core", "ansible_python_interpreter": "PATH=/home/core/bin:$PATH python" }'
 if [[ $1 == "--list" ]]; then
-	echo "{ \"minecraft\": [\"$(terraform output ip)\"] }"
+	echo "{ \"coreos\": { \"hosts\": $HOSTS, \"vars\": $VARS } }"
 else
 	echo "{}"
 fi
