@@ -10,7 +10,19 @@ resource "google_compute_network" "default" {
     ipv4_range = "10.240.0.0/16"
 }
 
-resource "google_compute_firewall" "default" {
+resource "google_compute_firewall" "ssh" {
+    name = "ssh"
+    network = "${google_compute_network.default.name}"
+
+    allow {
+        protocol = "tcp"
+        ports = ["22"]
+    }
+
+    source_ranges = ["0.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "minecraft" {
     name = "minecraft-port"
     network = "${google_compute_network.default.name}"
 
