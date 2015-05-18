@@ -35,6 +35,13 @@ Once that successfully completes, run the following to get the ip address of you
 terraform output ip
 ```
 
+### Forge Example
+
+A sample Forge configuration has been provided in `minecraft.yml.example`. To use it, copy it to `minecraft.yml`, change any options, and run:
+```
+ansible-playbook -i hosts --extra-vars "@minecraft.yml" provision.yml
+```
+
 Configuration
 -------------
 

@@ -1,0 +1,5 @@
+---
+minecraft_opts:
+  VERSION: 1.7.10
+  TYPE: FORGE
+minecraft_data: /path/to/archive.tgz

@@ -15,9 +15,7 @@
     docker_image: itzg/minecraft-server
     docker_volume: /home/core/minecraft
     minecraft_mem: "{{ ansible_memtotal_mb * 0.75 | round | int }}"
-    opts:
-    - EULA=TRUE
-    - JVM_OPTS=-Xmx{{ minecraft_mem }}M -Xms{{ minecraft_mem }}M
+    minecraft_opts: {}
     systemd_service_path: /etc/systemd/system
 
   tasks:
