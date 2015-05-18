@@ -27,8 +27,7 @@ Usage
 
 ```
 terraform apply
-ansible-playbook --inventory-file=hosts bootstrap.yml
-ansible-playbook --inventory-file=hosts provision.yml
+ansible-playbook -i hosts provision.yml
 ```
 
 Once that successfully completes, run the following to get the ip address of your brand new minecraft server!

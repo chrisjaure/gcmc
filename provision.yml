@@ -1,7 +1,15 @@
 ---
-- hosts: coreos
+- name: bootstrap coreos for ansible
+  hosts: coreos
+  gather_facts: no
+  roles:
+    - defunctzombie.coreos-bootstrap
+
+- name: set up minecraft docker service
+  hosts: coreos
   become: yes
   become_method: sudo
+
   vars:
     docker_name: minecraft
     docker_image: itzg/minecraft-server
@@ -11,13 +19,19 @@
     - EULA=TRUE
     - JVM_OPTS=-Xmx{{ minecraft_mem }}M -Xms{{ minecraft_mem }}M
     systemd_service_path: /etc/systemd/system
+
   tasks:
+
   - name: create host volume
     file: path={{ docker_volume }} owner=core group=core state=directory recurse=yes
+
   - name: upload minecraft data
     unarchive: src={{ minecraft_data }} dest={{ docker_volume }} owner=core group=core
     when: minecraft_data is defined
+
   - name: install service
     template: src=minecraft.service.j2 dest={{ systemd_service_path }}/minecraft.service
+
   - service: name={{ systemd_service_path }}/minecraft.service enabled=yes
+
   - service: name=minecraft.service state=started
