@@ -5,7 +5,7 @@ After=docker.service
 [Service]
 TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill {{ docker_name }}
-ExecStartPre=-/usr/bin/docker rm {{ docker_name }}
+ExecStartPre=-/usr/bin/docker rm -v {{ docker_name }}
 ExecStartPre=/usr/bin/docker pull {{ docker_image }}
 ExecStart=/usr/bin/docker run -e EULA=TRUE -e "JVM_OPTS=-Xmx{{ minecraft_mem }}M -Xms{{ minecraft_mem }}M" {% for key, value in minecraft_opts.iteritems() %} -e "{{ key }}={{ value }}"{% endfor %} -p 25565:25565 -v {{ docker_volume }}:/data --name {{ docker_name }} {{ docker_image }}
 
