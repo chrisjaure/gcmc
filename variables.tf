@@ -5,7 +5,7 @@ variable "region" {
 	default = "us-central1"
 }
 variable "disk_image" {
-	default = "coreos-stable-633-1-0-v20150414"
+	default = "coreos-stable-835-13-0-v20160218"
 }
 variable "machine_type" {
 	default = "n1-standard-1"
