@@ -21,7 +21,7 @@
   tasks:
 
   - name: create host volume
-    file: path={{ docker_volume }} owner=core group=core state=directory recurse=yes
+    file: path={{ docker_volume }} owner=core group=core mode=0777 state=directory recurse=yes
 
   - name: upload minecraft data
     unarchive: src={{ minecraft_data }} dest={{ docker_volume }} owner=core group=core
