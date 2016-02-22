@@ -6,8 +6,8 @@ Google Compute Engine Minecraft Provisioner.
 Dependencies
 ------------
 
-- [Terraform](https://github.com/hashicorp/terraform)
-- [Ansible](https://github.com/ansible/ansible)
+- [Terraform](https://www.terraform.io/intro/getting-started/install.html) >= v0.6
+- [Ansible](http://docs.ansible.com/ansible/intro_installation.html#installation) >= v1.5
 
 If you've got `brew` on Mac OS X, you can run the following to grab the dependencies:
 ```
@@ -18,8 +18,8 @@ brew install terraform ansible
 Setup
 -----
 
+- Create a new Google Cloud project if you don't have one yet. Make sure the Compute Engine API is enabled.
 - Download your Google Cloud [json credentials](https://developers.google.com/identity/protocols/application-default-credentials#howtheywork).
-- Create a new Google Cloud project if you don't have one yet.
 - Copy `terraform.tfvars.example` to `terraform.tfvars` and fill in your info. Have a look at `variables.tf` for optional variables you can set.
 
 Usage
