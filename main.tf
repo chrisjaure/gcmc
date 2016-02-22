@@ -1,6 +1,6 @@
 # Configure the Google Cloud provider
 provider "google" {
-    account_file = "${var.account_file}"
+    credentials = "${file(var.account_file)}"
     project = "${var.project}"
     region = "${var.region}"
 }
@@ -58,8 +58,6 @@ resource "google_compute_instance" "default" {
         	nat_ip = "${google_compute_address.default.address}"
         }
     }
-
-    address = "${google_compute_address.default.name}"
 
     metadata {
     	sshKeys = "${file(var.ssh_path)}"
